@@ -32,7 +32,7 @@ const Menu = ({ history }) => {
         <li className="nav-item">
           <Link
             className="nav-link"
-            style={isActive(history, '/')}
+            style={isActive(history, '/orgcheck')}
             to="/orgcheck"
           >
             OrgCheck

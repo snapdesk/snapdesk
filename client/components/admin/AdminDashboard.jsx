@@ -1,14 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import Menu from '../Menu';
 
-const AdminDashboard = () => {
-  const userInfo = () => {
-    return (
+import * as adminActions from '../../actions/adminActions.js';
+
+const mapStateToProps = state => ({
+  totalSnaps: state.tickets.totalSnaps,
+  leaderBoard: state.tickets.leaderBoard,
+  ticketsCount: state.tickets.ticketsCount,
+  userAvatar: state.user.userAvatar,
+  userName: state.user.userName,
+  userId: state.user.userId
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(adminActions, dispatch);
+
+class AdminDashboard extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    console.log('inside admin dash: ', this.props);
+    const userInfo = (
       <div className="card mb-5">
         <h3 className="card-header">User Information</h3>
         <ul className="list-group">
-          <li className="list-group-item">Hardcoded: username goes here</li>
+          <li className="list-group-item">{this.props.userId}</li>
           <li className="list-group-item">
             Hardcoded: user email goes here -- might not even need to exist
           </li>
@@ -26,10 +47,8 @@ const AdminDashboard = () => {
         </ul>
       </div>
     );
-  };
 
-  const visualData = () => {
-    return (
+    const visualData = (
       <div className="card mb-5">
         <h3 className="card-header">Ticket Visualization</h3>
         <ul className="list-group">
@@ -37,10 +56,8 @@ const AdminDashboard = () => {
         </ul>
       </div>
     );
-  };
 
-  const mentors = () => {
-    return (
+    const mentor = (
       <div className="card">
         <h4 className="card-header">Mentors in Org</h4>
         <ul className="list-group">
@@ -52,19 +69,18 @@ const AdminDashboard = () => {
         </ul>
       </div>
     );
-  };
 
-  return (
-    <>
-      <Menu />
-      <div className="row">
-        <div className="col-3">{userInfo()}</div>
-        <div className="col-6">{visualData()}</div>
-        <div className="col-3">{mentors()}</div>
-        {/* PICK UP ON ADDING A CREATE CATEGORY THINGY HERE -- ITS A STRETCH BUT WE CAN AT LEAST PUT THE PLACEHOLDER JSX */}
-      </div>
-    </>
-  );
-};
-
-export default AdminDashboard;
+    return (
+      <>
+        <Menu />
+        <div className="row">
+          <div className="col-3">{userInfo}</div>
+          <div className="col-6">{visualData}</div>
+          <div className="col-3">{mentor}</div>
+          {/* PICK UP ON ADDING A CREATE CATEGORY THINGY HERE -- ITS A STRETCH BUT WE CAN AT LEAST PUT THE PLACEHOLDER JSX */}
+        </div>
+      </>
+    );
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboard);
