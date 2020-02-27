@@ -13,7 +13,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Menu from '../Menu';
+import Menu from '../Menu.jsx';
+import User from './User.jsx';
 
 import * as adminActions from '../../actions/adminActions.js';
 
@@ -39,9 +40,9 @@ class AdminDashboard extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
-    this.props.getTickets();
-    this.props.getMentors();
+    console.log('orgusers: ', this.props.orgUsers);
+    // this.props.getTickets();
+    // this.props.getMentors();
   }
 
   render() {
@@ -91,13 +92,24 @@ class AdminDashboard extends Component {
       </div>
     );
 
+    let possibleMentors;
+
+    if (this.props.orgUsers !== []) {
+      possibleMentors = this.props.orgUsers.map(curr => {
+        return <User user={curr} />;
+      });
+    }
+
     return (
       <>
         <Menu />
         <div className="row">
           <div className="col-3">{userInfo}</div>
           <div className="col-6">{visualData}</div>
-          <div className="col-3">{mentor}</div>
+          <div className="col-3">
+            <h4 className="card-header">Mentors in Org</h4>
+            {possibleMentors}
+          </div>
           {/* PICK UP ON ADDING A CREATE CATEGORY THINGY HERE -- ITS A STRETCH BUT WE CAN AT LEAST PUT THE PLACEHOLDER JSX */}
         </div>
       </>
