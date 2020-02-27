@@ -23,8 +23,7 @@ const mapStateToProps = state => ({
   messageInput: state.tickets.messageInput,
   messageRating: state.tickets.messageRating,
   activeTickets: state.tickets.activeTickets,
-  messageRating: state.tickets.messageRating,
-  ticketsCount: state.tickets.ticketsCount,
+  ticketsCount: state.tickets.ticketsCount
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
@@ -36,6 +35,7 @@ class FeedContainer extends Component {
 
   componentWillMount() {
     this.props.getTickets();
+    console.log(this.props.activeTickets);
   }
 
   componentDidMount() {
@@ -48,7 +48,7 @@ class FeedContainer extends Component {
   }
 
   componentDidUpdate() {
-    document.title = '(' + this.props.ticketsCount + ') ' + 'SnapDesk';
+    document.title = `(${this.props.ticketsCount}) SnapDesk`;
   }
 
   render() {
@@ -62,37 +62,39 @@ class FeedContainer extends Component {
     if (!this.props.activeTickets || this.props.activeTickets.length === 0) {
       activeTickets = <p>No active tickets</p>;
     } else {
+      // build out an array of all tickets and track who created each ticket so we can properly accept vs resolve them
       activeTickets = [];
+      //
       for (let i = 0; i < this.props.activeTickets.length; i++) {
         let ticketBox;
         if (this.props.userId !== this.props.activeTickets[i].menteeId) {
           //ticket should render bystanderticketbox
           ticketBox = (
-            <BystanderTicketBox 
-            cancelAccept={this.props.cancelAccept}
-            acceptTicket={this.props.acceptTicket}
-            messageInput={this.props.activeTickets[i].messageInput}
-            messageRating={this.props.activeTickets[i].messageRating}
-            ticket={this.props.activeTickets[i]}
-            key={this.props.activeTickets[i].messageId}
+            <BystanderTicketBox
+              cancelAccept={this.props.cancelAccept}
+              acceptTicket={this.props.acceptTicket}
+              messageInput={this.props.activeTickets[i].messageInput}
+              messageRating={this.props.activeTickets[i].messageRating}
+              ticket={this.props.activeTickets[i]}
+              key={this.props.activeTickets[i].messageId}
             />
-            )
-          } else {
-            ticketBox = (
-              <MenteeTicketBox
+          );
+        } else {
+          ticketBox = (
+            <MenteeTicketBox
               deleteTicket={this.props.deleteTicket}
               resolveTicket={this.props.resolveTicket}
               messageInput={this.props.activeTickets[i].messageInput}
               messageRating={this.props.activeTickets[i].messageRating}
               ticket={this.props.activeTickets[i]}
               key={this.props.activeTickets[i].messageId}
-              />
-              )
-          }
-          
-          activeTickets.push(ticketBox);
+            />
+          );
         }
+
+        activeTickets.push(ticketBox);
       }
+    }
 
     return (
       <div>
@@ -109,7 +111,4 @@ class FeedContainer extends Component {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(FeedContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(FeedContainer);

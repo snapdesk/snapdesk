@@ -17,7 +17,7 @@
             "warn",
             {
                 "code": 80,
-                "tabWidth": 4,
+                "tabWidth": 2,
                 "comments": 100,
                 "ignoreComments": false,
                 "ignoreTrailingComments": true,
@@ -37,6 +37,7 @@
         "no-multiple-empty-lines": "off",
         "no-prototype-builtins": "warn",
         "prefer-destructuring": "off",
-        "max-classes-per-file": "off"
+        "max-classes-per-file": "off",
+        "react/prefer-stateless-function": [0]
     }
 }

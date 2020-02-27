@@ -16,7 +16,7 @@ const ticketState = {
   messageInput: '',
   messageRating: '',
   activeTickets: [],
-  ticketsCount: 0,
+  ticketsCount: 0
 };
 
 const ticketsReducer = (state = ticketState, action) => {
@@ -28,8 +28,8 @@ const ticketsReducer = (state = ticketState, action) => {
         messageInput: '',
         messageRating: '',
         activeTickets: [],
-        ticketsCount: 0,
-      }
+        ticketsCount: 0
+      };
     // case types.USER_LOGIN:
     //   console.log(action);
     //   const isLoggedIn = action.payload.isLoggedIn;
@@ -38,11 +38,18 @@ const ticketsReducer = (state = ticketState, action) => {
     //     isLoggedIn
     //   };
     case types.GET_TICKETS:
-      return { ...state,
+      return {
+        ...state,
         activeTickets: action.payload,
-        ticketsCount: action.payload.length,
-      }
+        ticketsCount: action.payload.length
+      };
 
+    case types.GET_PENDING:
+      return {
+        ...state,
+        pendingTickets: action.payload,
+        pendingCount: action.payload.length
+      };
 
     case types.POST_TICKET:
       // build new ticket object to be inserted into activeTickets array (use props from FeedContainer)
@@ -63,41 +70,42 @@ const ticketsReducer = (state = ticketState, action) => {
         activeTickets: updatedTickets,
         ticketsCount: state.ticketsCount + 1,
         nextTicketId: state.nextTicketId + 1,
-        messageInput: '',
+        messageInput: ''
       };
 
     case types.ACCEPT_TICKET:
-      return { ...state };
+      return {
+        ...state
+      };
 
     case types.CANCEL_ACCEPT:
       return { ...state };
 
     case types.DELETE_TICKET:
-        updatedTickets = state.activeTickets.map((ticket, index) => {
-          if (ticket.messageId === action.payload) {
-            idx = index
-            return ticket
-          }
+      updatedTickets = state.activeTickets.map((ticket, index) => {
+        if (ticket.messageId === action.payload) {
+          idx = index;
           return ticket;
-        })
-        updatedTickets.splice(idx, 1)
-        // console.log(updatedTickets)
-      return { 
+        }
+        return ticket;
+      });
+      updatedTickets.splice(idx, 1);
+      return {
         ...state,
         activeTickets: updatedTickets,
         ticketsCount: state.ticketsCount - 1
       };
 
     case types.RESOLVE_TICKET:
-        updatedTickets = state.activeTickets.map((ticket, index) => {
-          if (ticket.messageId === action.payload) {
-            idx = index
-            return ticket
-          }
+      updatedTickets = state.activeTickets.map((ticket, index) => {
+        if (ticket.messageId === action.payload) {
+          idx = index;
           return ticket;
-        })    
-        updatedTickets.splice(idx, 1)
-      return { 
+        }
+        return ticket;
+      });
+      updatedTickets.splice(idx, 1);
+      return {
         ...state,
         activeTickets: updatedTickets,
         ticketsCount: state.ticketsCount - 1

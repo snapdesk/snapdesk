@@ -15,7 +15,7 @@ const userState = {
   userId: '',
   userName: '',
   userBio: '',
-  userAvatar: '',
+  userAvatar: ''
 };
 
 const userReducer = (state = userState, action) => {
@@ -23,7 +23,7 @@ const userReducer = (state = userState, action) => {
     case types.USER_LOGIN:
       return {
         ...state,
-        isLoggedIn: true,
+        isLoggedIn: true
       };
 
     case types.USER_LOGOUT:
@@ -32,9 +32,9 @@ const userReducer = (state = userState, action) => {
         userName: '',
         userBio: '',
         userAvatar: '',
-        isLoggedIn: false,
-      }
-    
+        isLoggedIn: false
+      };
+
     case types.LOAD_USER:
       // console.log('LOAD USER: ', action);
       return {
@@ -43,8 +43,8 @@ const userReducer = (state = userState, action) => {
         userName: action.payload.name,
         userBio: action.payload.bio,
         userAvatar: action.payload.avatar_url
-      }
-      
+      };
+
     default:
       return state;
   }
