@@ -23,7 +23,11 @@ const mapStateToProps = state => ({
   ticketsCount: state.tickets.ticketsCount,
   userAvatar: state.user.userAvatar,
   userName: state.user.userName,
-  userId: state.user.userId
+  userId: state.user.userId,
+  orgId: state.org.orgId,
+  orgTickets: state.org.orgTickets,
+  orgName: state.org.orgName,
+  orgUsers: state.org.orgUsers
 });
 
 const mapDispatchToProps = dispatch =>
@@ -36,7 +40,8 @@ class AdminDashboard extends Component {
 
   componentDidMount() {
     console.log(this.props);
-    // this.props.getMentors();
+    this.props.getTickets();
+    this.props.getMentors();
   }
 
   render() {
