@@ -51,13 +51,11 @@ class AdminDashboard extends Component {
       <div className="card mb-5">
         <h3 className="card-header">User Information</h3>
         <ul className="list-group">
-          <li className="list-group-item">{this.props.userId}</li>
-          <li className="list-group-item">
+          <li className="list-group-item">{this.props.userName}</li>
+          {/* <li className="list-group-item">
             Hardcoded: user email goes here -- might not even need to exist
-          </li>
-          <li className="list-group-item">
-            Hardcoded: organization we're a part of for right now
-          </li>
+          </li> */}
+          <li className="list-group-item">{this.props.orgName}</li>
           <li className="list-group-item">
             Hardcoded for rn: User role, ie admin or member of the org
           </li>
