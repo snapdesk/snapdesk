@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import Logo from './backgroundSVG/Logo';
+import OrgCheck from './OrgCheck';
 
 /**
  * This func checks whether the current menu item is the page we are on
@@ -27,6 +27,15 @@ const Menu = ({ history }) => {
         <li className="nav-item">
           <Link className="nav-link" style={isActive(history, '/')} to="/">
             Home
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            className="nav-link"
+            style={isActive(history, '/')}
+            to="/orgcheck"
+          >
+            OrgCheck
           </Link>
         </li>
 

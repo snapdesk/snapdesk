@@ -15,6 +15,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import LoginPage from './components/LoginPage';
 import Wrapper from './containers/Wrapper';
 import AdminDashboard from './components/admin/AdminDashboard';
+import OrgCheck from './components/OrgCheck';
 
 const mapStateToProps = ({ user: { isLoggedIn } }) => ({
   isLoggedIn
@@ -72,6 +73,7 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route path="/" exact component={Wrapper} />
+            <Route path="/orgcheck" exact component={OrgCheck} />
             <Route path="/admin" exact component={AdminDashboard} />
             {/* <Route path="/signout" exact component={Signout} /> */}
           </Switch>
