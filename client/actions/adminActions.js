@@ -30,6 +30,17 @@ export const getMentors = () => (dispatch, getState) => {
         });
       }
     });
+
+export const orgValidate = organization => (dispatch, getState) => {
+  axios
+    .post('/api/organizations', {
+      orgID: getState().admin.organization
+    })
+    .then(data => {
+      dispatch({
+        types: types.ORG_VALIDATE,
+        payload: data
+      });
 };
 
 export const getTickets = () => (dispatch, getState) => {

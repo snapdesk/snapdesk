@@ -114,5 +114,4 @@ class AdminDashboard extends Component {
     );
   }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboard);
