@@ -122,6 +122,36 @@ ticketsController.getOrganizationTickets = (req, res, next) => {
     });
 };
 
+ticketsController.getOrgMentorResTicket = (req, res, next) => {
+  const { organization_id, mentor_id } = req.body;
+  const getOrgMentResTicket = {
+    text: `
+        SELECT * FROM tickets 
+        WHERE organization_id = $1
+        and mentor_id = $2, 
+        and status = $3`,
+    values: [organization_id, mentor_id, 'resolved']
+  };
+  db.query(getOrgMentResTicket)
+    .then(tickets => {
+      res.locals.tickets = tickets;
+      console.log(
+        res.locals,
+        'this is res locals inside getOrgMentorResTicket'
+      );
+      console.log(
+        res.locals.tickets,
+        'this is tickets insidee getOrgMentroResTicket'
+      );
+      return next();
+    })
+    .catch(err => {
+      return next({
+        log: `Error in middleware ticketsController.getOrgMentorResTicket: ${err}`
+      });
+    });
+};
+
 ticketsController.getUsersInOrganization = (req, res, next) => {
   const { user_id } = req.body;
   const getUsersInOrganization = {
@@ -142,6 +172,6 @@ ticketsController.getUsersInOrganization = (req, res, next) => {
         log: `Error in middleware ticketsController.getUsersInOrganization: ${err}`
       });
     });
-  };
+};
 
 module.exports = ticketsController;

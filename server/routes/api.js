@@ -50,4 +50,12 @@ apiRouter.get(
   (req, res) => res.status(200).json(res.locals)
 );
 
+// endpoint to retrieve all of an organizations resolved tickets, may not be used due to sorting being configured in the front end
+apiRouter.get(
+    '/organizations/resolved',
+    jwtsController.isLoggedIn,
+    ticketsController.getOrgMentorResTicket,
+    (req, res) => res.status(200).json(res.locals)
+);
+
 module.exports = apiRouter;
