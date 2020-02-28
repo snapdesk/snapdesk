@@ -90,13 +90,11 @@ class AdminDashboard extends Component {
       </div>
     );
 
-    let possibleMentors;
+    let possibleMentors = ['Anthony', 'Ashley', 'Brian', 'Jessikee', 'Lance'];
 
-    if (this.props.orgUsers !== []) {
-      possibleMentors = this.props.orgUsers.map(curr => {
-        return <User user={curr} />;
-      });
-    }
+    let renderMentors = possibleMentors.map(curr => {
+      return <User user={curr} />;
+    });
 
     return (
       <>
@@ -106,7 +104,7 @@ class AdminDashboard extends Component {
           <div className="col-6">{visualData}</div>
           <div className="col-3">
             <h4 className="card-header">Mentors in Org</h4>
-            {possibleMentors}
+            {renderMentors}
           </div>
           {/* PICK UP ON ADDING A CREATE CATEGORY THINGY HERE -- ITS A STRETCH BUT WE CAN AT LEAST PUT THE PLACEHOLDER JSX */}
         </div>

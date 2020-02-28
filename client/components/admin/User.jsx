@@ -3,18 +3,8 @@ import { Form, Button } from 'react-bootstrap';
 
 let buttons;
 
-class User extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>Hello World!</h1>
-      </div>
-    );
-  }
-}
+const User = ({ user }) => {
+  return <h2>{user}</h2>;
+};
 
 export default User;
