@@ -27,11 +27,11 @@ class BystanderTicketBox extends Component {
           <Button
             onClick={() => this.props.acceptTicket(this.props.ticket.messageId)}
             type="button"
-            className="btn btn-success"
+            className="btn solo-color"
           >
             Accept
           </Button>
-          <Button disabled type="button" className="btn btn-secondary">
+          <Button disabled type="button" className="btn btn-outline-primary">
             Cancel
           </Button>
         </span>
@@ -47,7 +47,7 @@ class BystanderTicketBox extends Component {
           <Button
             variant="warning"
             type="button"
-            className="btn btn-success"
+            className="btn solo-color"
             disabled
           >
             Pending
@@ -55,7 +55,7 @@ class BystanderTicketBox extends Component {
           <Button
             onClick={() => this.props.cancelAccept(this.props.ticket.messageId)}
             type="button"
-            className="btn btn-secondary"
+            className="btn btn-outline-primary"
           >
             Cancel
           </Button>
@@ -72,7 +72,7 @@ class BystanderTicketBox extends Component {
           <Button
             variant="warning"
             type="button"
-            className="btn btn-success"
+            className="btn solo-color"
             disabled
           >
             Pending
@@ -80,7 +80,7 @@ class BystanderTicketBox extends Component {
           <Button
             onClick={() => this.props.cancelAccept(this.props.messageId)}
             type="button"
-            className="btn btn-warning"
+            className="btn btn-outline-primary"
           >
             Cancel - not active
           </Button>

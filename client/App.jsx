@@ -16,6 +16,7 @@ import LoginPage from './components/LoginPage';
 import Wrapper from './containers/Wrapper';
 import AdminDashboard from './components/admin/AdminDashboard';
 import OrgCheck from './components/OrgCheck';
+import MainRoom from './components/mainRoom/MainRoom';
 
 const mapStateToProps = ({ user: { isLoggedIn } }) => ({
   isLoggedIn
@@ -30,41 +31,22 @@ class App extends Component {
 
   render() {
     // conditional rendering of login button
-    const { isLoggedIn } = this.props;
+    const { isLoggedIn, isValidated } = this.props;
     if (!isLoggedIn) {
       return (
         <>
           <LoginPage />
-          {/* /login/oauth is the route on the bakend that submit leads to */}
-          {/* <form id="login-form" method="GET" action="/login/oauth">
-                        {/* <img id="logo" src="logo2.png" alt="" /> */}
-          {/* GitHub OAuth button */}
-          {/* <button
-                            className="btn btn-outline-primary btn-lg"
-                            id="github-login"
-                            type="submit"
-                        >
-                            GitHub Login
-                        </button>
-                    </form> */}
         </>
-        // <div id="landing">
-        //     <LoginPage />
-        //     {/* /login/oauth is the route on the bakend that submit leads to */}
-        //     <form id="login-form" method="GET" action="/login/oauth">
-        //         <img id="logo" src="logo2.png" alt="" />
-        //         {/* GitHub OAuth button */}
-        //         <button
-        //             className="btn btn-outline-primary btn-lg"
-        //             id="github-login"
-        //             type="submit"
-        //         >
-        //             GitHub Login
-        //         </button>
-        //     </form>
-        // </div>
       );
     }
+    // THIS WILL BE MANDATORY TO MAKE THE ORGANIZATION PAGE RENDER!!
+    // if (!isValidated) {
+    //   return (
+    //     <>
+    //       <OrgCheck />
+    //     </>
+    //   );
+    // }
 
     // if we ARE logged in, return our Wrapper component
     return (
@@ -75,6 +57,7 @@ class App extends Component {
             <Route path="/" exact component={Wrapper} />
             <Route path="/orgcheck" {...this.props} component={OrgCheck} />
             <Route path="/admin" component={AdminDashboard} />
+            <Route path="/mainroom" component={MainRoom} />
             {/* <Route path="/signout" exact component={Signout} /> */}
           </Switch>
         </BrowserRouter>

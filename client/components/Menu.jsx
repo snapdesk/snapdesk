@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import OrgCheck from './OrgCheck';
+import MainRoom from './mainRoom/MainRoom';
 
 /**
  * This func checks whether the current menu item is the page we are on
