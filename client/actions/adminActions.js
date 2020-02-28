@@ -30,6 +30,7 @@ export const getMentors = () => (dispatch, getState) => {
         });
       }
     });
+};
 
 export const orgValidate = organization => (dispatch, getState) => {
   axios
@@ -41,6 +42,7 @@ export const orgValidate = organization => (dispatch, getState) => {
         types: types.ORG_VALIDATE,
         payload: data
       });
+    });
 };
 
 export const getTickets = () => (dispatch, getState) => {
