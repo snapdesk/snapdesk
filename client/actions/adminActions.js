@@ -33,9 +33,12 @@ export const getMentors = () => (dispatch, getState) => {
 };
 
 export const orgValidate = organization => (dispatch, getState) => {
+  const org = organization.toLowerCase();
+  // console.log(org);
   axios
-    .post('/api/organizations', {
-      orgID: getState().admin.organization
+    .post('/api/organization/set', {
+      orgID: org,
+      userID: getState().user.userId
     })
     .then(data => {
       dispatch({
