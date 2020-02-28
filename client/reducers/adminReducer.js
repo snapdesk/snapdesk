@@ -10,6 +10,9 @@ const adminState = {
 
 const adminReducer = (state = adminState, action) => {
   //need to figure out what is coming back on the action.payload
+
+  console.log(action.payload);
+
   switch (action.type) {
     case types.GET_MENTORS:
       return {

@@ -168,4 +168,22 @@ ticketsController.getUsersInOrganization = (req, res, next) => {
     });
 };
 
+ticketsController.setUserOrganization = (req, res, next) => {
+  const { userID, orgID } = req.body;
+  const query = {
+    text: `INSERT INTO organizations (name, user_id, admin) VALUES ($1, $2, $3)`,
+    values: [orgID, userID, 0]
+  };
+  db.query(query)
+    .then(users => {
+      console.log('setuserorg');
+      console.log(users);
+    })
+    .catch(err => {
+      return next({
+        log: `Error in middleware ticketsController.setUserOrganization: ${err}`
+      });
+    });
+};
+
 module.exports = ticketsController;

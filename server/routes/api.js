@@ -51,6 +51,13 @@ apiRouter.post(
 );
 
 // endpoint to retrieve all of an organizations resolved tickets, may not be used due to sorting being configured in the front end
+apiRouter.post(
+  '/organization/set',
+  jwtsController.isLoggedIn,
+  ticketsController.setUserOrganization,
+  (req, res) => res.status(200).json(res.locals)
+);
+
 apiRouter.get(
   '/organizations/resolved',
   jwtsController.isLoggedIn,
