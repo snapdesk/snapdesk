@@ -73,8 +73,8 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route path="/" exact component={Wrapper} />
-            <Route path="/orgcheck" exact component={OrgCheck} />
-            <Route path="/admin" exact component={AdminDashboard} />
+            <Route path="/orgcheck" {...this.props} component={OrgCheck} />
+            <Route path="/admin" component={AdminDashboard} />
             {/* <Route path="/signout" exact component={Signout} /> */}
           </Switch>
         </BrowserRouter>

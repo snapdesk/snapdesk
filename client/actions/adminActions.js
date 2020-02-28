@@ -15,7 +15,7 @@ import * as types from '../constants/actionTypes';
 export const getMentors = () => (dispatch, getState) =>
   axios
     .post('/api/organizations', {
-      orgID: getState.user.orgID
+      orgID: getState().org.orgID
     })
     .then(({ data }) => {
       if (!data.isLoggedIn) {
@@ -30,3 +30,16 @@ export const getMentors = () => (dispatch, getState) =>
         });
       }
     });
+
+export const orgValidate = organization => (dispatch, getState) => {
+  axios
+    .post('/api/organizations', {
+      orgID: getState().admin.organization
+    })
+    .then(data => {
+      dispatch({
+        types: types.ORG_VALIDATE,
+        payload: data
+      });
+    });
+};

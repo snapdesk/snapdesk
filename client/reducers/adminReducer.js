@@ -4,7 +4,8 @@ const adminState = {
   orgTickets: [],
   orgUsers: [],
   orgId: 0,
-  orgName: ''
+  orgName: '',
+  isValidated: false
 };
 
 const adminReducer = (state = adminState, action) => {
@@ -14,6 +15,12 @@ const adminReducer = (state = adminState, action) => {
       return {
         ...state,
         orgUsers: action.payload.users
+      };
+
+    case types.ORG_VALIDATE:
+      return {
+        ...state,
+        isValidated: true
       };
 
     default:
