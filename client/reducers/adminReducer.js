@@ -2,7 +2,7 @@ import * as types from '../constants/actionTypes';
 
 const adminState = {
   orgTickets: [],
-  orgUsers: [],
+  orgUsers: [1, 2, 3, 4],
   orgId: 0,
   orgName: '',
   isValidated: false

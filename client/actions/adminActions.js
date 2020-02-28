@@ -12,10 +12,10 @@
 import axios from 'axios';
 import * as types from '../constants/actionTypes';
 
-export const getMentors = () => (dispatch, getState) =>
+export const getMentors = () => (dispatch, getState) => {
   axios
-    .post('/api/organizations', {
-      orgID: getState().org.orgID
+    .post('/api/organizations/users', {
+      orgID: getState().org.orgId
     })
     .then(({ data }) => {
       if (!data.isLoggedIn) {
@@ -41,5 +41,24 @@ export const orgValidate = organization => (dispatch, getState) => {
         types: types.ORG_VALIDATE,
         payload: data
       });
+};
+
+export const getTickets = () => (dispatch, getState) => {
+  axios
+    .post('/api/organizations/', {
+      orgID: getState().org.orgId
+    })
+    .then(({ data }) => {
+      if (!data.isLoggedIn) {
+        dispatch({
+          type: types.USER_LOGOUT,
+          payload: data
+        });
+      } else {
+        dispatch({
+          type: types.GET_MENTORS,
+          payload: data
+        });
+      }
     });
 };

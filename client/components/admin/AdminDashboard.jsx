@@ -13,7 +13,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Menu from '../Menu';
+import Menu from '../Menu.jsx';
+import User from './User.jsx';
 
 import * as adminActions from '../../actions/adminActions.js';
 
@@ -23,7 +24,11 @@ const mapStateToProps = state => ({
   ticketsCount: state.tickets.ticketsCount,
   userAvatar: state.user.userAvatar,
   userName: state.user.userName,
-  userId: state.user.userId
+  userId: state.user.userId,
+  orgId: state.org.orgId,
+  orgTickets: state.org.orgTickets,
+  orgName: state.org.orgName,
+  orgUsers: state.org.orgUsers
 });
 
 const mapDispatchToProps = dispatch =>
@@ -35,7 +40,8 @@ class AdminDashboard extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
+    console.log('orgusers: ', this.props.orgUsers);
+    // this.props.getTickets();
     // this.props.getMentors();
   }
 
@@ -45,13 +51,11 @@ class AdminDashboard extends Component {
       <div className="card mb-5">
         <h3 className="card-header">User Information</h3>
         <ul className="list-group">
-          <li className="list-group-item">{this.props.userId}</li>
-          <li className="list-group-item">
+          <li className="list-group-item">{this.props.userName}</li>
+          {/* <li className="list-group-item">
             Hardcoded: user email goes here -- might not even need to exist
-          </li>
-          <li className="list-group-item">
-            Hardcoded: organization we're a part of for right now
-          </li>
+          </li> */}
+          <li className="list-group-item">{this.props.orgName}</li>
           <li className="list-group-item">
             Hardcoded for rn: User role, ie admin or member of the org
           </li>
@@ -86,13 +90,24 @@ class AdminDashboard extends Component {
       </div>
     );
 
+    let possibleMentors;
+
+    if (this.props.orgUsers !== []) {
+      possibleMentors = this.props.orgUsers.map(curr => {
+        return <User user={curr} />;
+      });
+    }
+
     return (
       <>
         <Menu />
         <div className="row">
           <div className="col-3">{userInfo}</div>
           <div className="col-6">{visualData}</div>
-          <div className="col-3">{mentor}</div>
+          <div className="col-3">
+            <h4 className="card-header">Mentors in Org</h4>
+            {possibleMentors}
+          </div>
           {/* PICK UP ON ADDING A CREATE CATEGORY THINGY HERE -- ITS A STRETCH BUT WE CAN AT LEAST PUT THE PLACEHOLDER JSX */}
         </div>
       </>

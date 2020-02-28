@@ -36,14 +36,14 @@ apiRouter.post(
   (req, res) => res.status(200).json(res.locals)
 );
 
-apiRouter.get(
+apiRouter.post(
   '/organizations',
   jwtsController.isLoggedIn,
   ticketsController.getOrganizationTickets,
   (req, res) => res.status(200).json(res.locals)
 );
 
-apiRouter.get(
+apiRouter.post(
   '/organization/users',
   jwtsController.isLoggedIn,
   ticketsController.getUsersInOrganization,

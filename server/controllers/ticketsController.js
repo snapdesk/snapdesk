@@ -102,13 +102,13 @@ ticketsController.updateTicketStatus = (req, res, next) => {
 };
 
 ticketsController.getOrganizationTickets = (req, res, next) => {
-  const { organization_id } = req.body;
+  const { orgID } = req.body;
   const getOrganizationTicket = {
     text: `
         SELECT * FROM tickets
         WHERE organization_id = $1
         `,
-    values: [organization_id]
+    values: [orgID]
   };
   db.query(getOrganizationTicket)
     .then(tickets => {
@@ -142,6 +142,6 @@ ticketsController.getUsersInOrganization = (req, res, next) => {
         log: `Error in middleware ticketsController.getUsersInOrganization: ${err}`
       });
     });
-  };
+};
 
 module.exports = ticketsController;
