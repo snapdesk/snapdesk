@@ -35,34 +35,7 @@ class App extends Component {
       return (
         <>
           <LoginPage />
-          {/* /login/oauth is the route on the bakend that submit leads to */}
-          {/* <form id="login-form" method="GET" action="/login/oauth">
-                        {/* <img id="logo" src="logo2.png" alt="" /> */}
-          {/* GitHub OAuth button */}
-          {/* <button
-                            className="btn btn-outline-primary btn-lg"
-                            id="github-login"
-                            type="submit"
-                        >
-                            GitHub Login
-                        </button>
-                    </form> */}
         </>
-        // <div id="landing">
-        //     <LoginPage />
-        //     {/* /login/oauth is the route on the bakend that submit leads to */}
-        //     <form id="login-form" method="GET" action="/login/oauth">
-        //         <img id="logo" src="logo2.png" alt="" />
-        //         {/* GitHub OAuth button */}
-        //         <button
-        //             className="btn btn-outline-primary btn-lg"
-        //             id="github-login"
-        //             type="submit"
-        //         >
-        //             GitHub Login
-        //         </button>
-        //     </form>
-        // </div>
       );
     }
 
