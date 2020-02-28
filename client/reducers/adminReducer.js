@@ -2,9 +2,10 @@ import * as types from '../constants/actionTypes';
 
 const adminState = {
   orgTickets: [],
-  orgUsers: [],
+  orgUsers: [1, 2, 3, 4],
   orgId: 0,
-  orgName: ''
+  orgName: '',
+  isValidated: false
 };
 
 const adminReducer = (state = adminState, action) => {
@@ -14,6 +15,12 @@ const adminReducer = (state = adminState, action) => {
       return {
         ...state,
         orgUsers: action.payload.users
+      };
+
+    case types.ORG_VALIDATE:
+      return {
+        ...state,
+        isValidated: true
       };
 
     default:

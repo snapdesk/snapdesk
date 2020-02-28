@@ -102,13 +102,13 @@ ticketsController.updateTicketStatus = (req, res, next) => {
 };
 
 ticketsController.getOrganizationTickets = (req, res, next) => {
-  const { organization_id } = req.body;
+  const { orgID } = req.body;
   const getOrganizationTicket = {
     text: `
         SELECT * FROM tickets
         WHERE organization_id = $1
         `,
-    values: [organization_id]
+    values: [orgID]
   };
   db.query(getOrganizationTicket)
     .then(tickets => {
