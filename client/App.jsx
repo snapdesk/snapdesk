@@ -16,6 +16,7 @@ import LoginPage from './components/LoginPage';
 import Wrapper from './containers/Wrapper';
 import AdminDashboard from './components/admin/AdminDashboard';
 import OrgCheck from './components/OrgCheck';
+import MainRoom from './components/mainRoom/MainRoom';
 
 const mapStateToProps = ({ user: { isLoggedIn } }) => ({
   isLoggedIn
@@ -30,7 +31,7 @@ class App extends Component {
 
   render() {
     // conditional rendering of login button
-    const { isLoggedIn } = this.props;
+    const { isLoggedIn, isValidated } = this.props;
     if (!isLoggedIn) {
       return (
         <>
@@ -38,6 +39,14 @@ class App extends Component {
         </>
       );
     }
+    // THIS WILL BE MANDATORY TO MAKE THE ORGANIZATION PAGE RENDER!!
+    // if (!isValidated) {
+    //   return (
+    //     <>
+    //       <OrgCheck />
+    //     </>
+    //   );
+    // }
 
     // if we ARE logged in, return our Wrapper component
     return (
@@ -48,6 +57,7 @@ class App extends Component {
             <Route path="/" exact component={Wrapper} />
             <Route path="/orgcheck" {...this.props} component={OrgCheck} />
             <Route path="/admin" component={AdminDashboard} />
+            <Route path="/mainroom" component={MainRoom} />
             {/* <Route path="/signout" exact component={Signout} /> */}
           </Switch>
         </BrowserRouter>

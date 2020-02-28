@@ -29,13 +29,6 @@ const LeftNav = props => (
         {props.userName}{' '}
       </h4>
     </Nav.Link>
-    <Nav.Link
-      className="btn btn-success btn-sm "
-      width="100px"
-      eventKey="logout-link"
-    >
-      Logout
-    </Nav.Link>
   </Nav>
 );
 
