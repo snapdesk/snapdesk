@@ -22,6 +22,14 @@ html {
   color: #343a40;
 }
 
+.solo-color {
+  background-color: #d53369 !important;
+}
+
+.resolve-color {
+  background-color: #daae51 !important;
+}
+
 .gradient {
   background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
 }

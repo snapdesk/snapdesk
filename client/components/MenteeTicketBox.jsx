@@ -35,14 +35,14 @@ class MenteeTicketBox extends Component {
               this.props.resolveTicket(this.props.ticket.messageId)
             }
             type="button"
-            className="btn btn-secondary"
+            className="btn resolve-color"
           >
             Resolve
           </Button>
           <Button
             onClick={() => this.props.deleteTicket(this.props.ticket.messageId)}
             type="button"
-            className="btn btn-success"
+            className="btn btn-outline-primary"
           >
             Delete
           </Button>
@@ -55,7 +55,7 @@ class MenteeTicketBox extends Component {
           <Button
             variant="warning"
             type="button"
-            className="btn btn-secondary"
+            className="btn resolve-color"
             disabled
           >
             Pending
@@ -63,7 +63,7 @@ class MenteeTicketBox extends Component {
           <Button
             onClick={() => this.props.cancelTicket(this.props.ticket.messageId)}
             type="button"
-            className="btn btn-success"
+            className="btn btn-outline-primary"
           >
             Cancel
           </Button>
@@ -77,11 +77,11 @@ class MenteeTicketBox extends Component {
               this.props.resolveTicket(this.props.ticket.messageId)
             }
             type="button"
-            className="btn btn-secondary"
+            className="btn resolve-color"
           >
             Resolve
           </Button>
-          <Button disabled type="button" className="btn btn-success">
+          <Button disabled type="button" className="btn btn-outline-primary">
             Delete
           </Button>
         </span>

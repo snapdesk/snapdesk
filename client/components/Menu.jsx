@@ -39,15 +39,6 @@ const Menu = ({ history }) => {
             OrgCheck
           </Link>
         </li>
-        <li className="nav-item">
-          <Link
-            className="nav-link"
-            style={isActive(history, '/mainroom')}
-            to="/mainroom"
-          >
-            main room
-          </Link>
-        </li>
 
         <li className="nav-item">
           <Link
