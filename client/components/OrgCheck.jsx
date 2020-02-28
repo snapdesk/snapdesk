@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as adminActions from '../actions/adminActions';
 import Background from './backgroundSVG/Background';
 import Logo from './backgroundSVG/Logo';
 
+import * as adminActions from '../actions/adminActions';
+
 const mapStateToProps = state => ({
   // messageInput: state.admin.messageInput
+  isValidated: state.org.isValidated
 });
 
 const mapDispatchToProps = dispatch =>
@@ -15,6 +17,10 @@ const mapDispatchToProps = dispatch =>
 class OrgCheck extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    console.log('propsfromorgcheck: ', this.props);
   }
 
   render() {
@@ -32,7 +38,9 @@ class OrgCheck extends Component {
                 method="GET"
                 onSubmit={e => {
                   e.preventDefault();
-                  props.orgValidate(org);
+                  console.log(e.target);
+                  let value = e.target.Organization.value;
+                  this.props.orgValidate(value);
                 }}
               >
                 <div className="mb-4">
@@ -60,6 +68,13 @@ class OrgCheck extends Component {
                     // onClick={props.orgValidate(org)}
                   >
                     Sign In
+                  </button>
+                  <button
+                    className="mx-auto bg-red-500 hover:bg-orange-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit"
+                    // onClick={props.orgValidate(org)}
+                  >
+                    Join Org
                   </button>
                 </div>
               </form>
