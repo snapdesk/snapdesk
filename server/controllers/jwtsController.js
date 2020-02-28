@@ -22,7 +22,7 @@ jwtsController.loginUser = (req, res, next) => {
     return next();
   } catch (err) {
     return next({
-      log: `Error in middleware jwtsController.loginUser: ${err}`,
+      log: `Error in middleware jwtsController.loginUser: ${err}`
     });
   }
 };
@@ -37,7 +37,7 @@ jwtsController.isLoggedIn = (req, res, next) => {
     });
   } catch (err) {
     return next({
-      log: `Error in middleware jwtsController.isLoggedIn: ${err}`,
+      log: `Error in middleware jwtsController.isLoggedIn: ${err}`
     });
   }
 };

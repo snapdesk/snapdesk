@@ -122,6 +122,30 @@ ticketsController.getOrganizationTickets = (req, res, next) => {
     });
 };
 
+ticketsController.getOrgMentorResTicket = (req, res, next) => {
+  const { organization_id, mentor_id } = req.body;
+
+  const getOrgMentResTicket = {
+    text: `
+        SELECT * FROM tickets 
+        WHERE organization_id = $1
+        AND mentor_id = $2
+        AND status = $3;
+        `,
+    values: [organization_id, mentor_id, 'resolved']
+  };
+  db.query(getOrgMentResTicket)
+    .then(tickets => {
+      res.locals.tickets = tickets;
+      return next();
+    })
+    .catch(err => {
+      return next({
+        log: `Error in middleware ticketsController.getOrgMentorResTicket: ${err}`
+      });
+    });
+};
+
 ticketsController.getUsersInOrganization = (req, res, next) => {
   const { user_id } = req.body;
   const getUsersInOrganization = {
